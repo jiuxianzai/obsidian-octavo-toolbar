@@ -1,0 +1,82 @@
+/* ==========================================================================
+   Octavo Toolbar —— 选中文工具条
+   --------------------------------------------------------------------------
+   插件自带外观，不依赖主题；装了 Octavo 主题时会自动吃它的纸感变量。
+   ========================================================================== */
+
+.octavo-toolbar {
+  position: fixed;
+  z-index: var(--layer-popover, 30);
+  display: flex;
+  align-items: center;
+  gap: 1px;
+  padding: 4px;
+  border: 1px solid var(--octavo-rule, var(--background-modifier-border));
+  border-radius: 8px;
+  background: var(--octavo-paper, var(--background-primary));
+  box-shadow: var(--shadow-s, 0 4px 16px rgba(0, 0, 0, 0.16));
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(2px);
+  transition: opacity 100ms ease, transform 100ms ease;
+}
+
+.octavo-toolbar.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.octavo-toolbar-btn {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  box-shadow: none;
+  color: var(--octavo-ink-muted, var(--text-muted));
+  cursor: pointer;
+}
+
+.octavo-toolbar-btn:hover {
+  background: var(--octavo-active-line-bg, var(--background-modifier-hover));
+  color: var(--octavo-ink, var(--text-normal));
+}
+
+.octavo-toolbar-btn:active {
+  background: var(--background-modifier-active-hover);
+}
+
+.octavo-toolbar-btn:focus-visible {
+  outline: 2px solid var(--interactive-accent);
+  outline-offset: 1px;
+}
+
+.octavo-toolbar-btn .svg-icon {
+  width: 16px;
+  height: 16px;
+}
+
+.octavo-toolbar.is-labeled .octavo-toolbar-btn {
+  width: auto;
+  padding: 0 8px;
+}
+
+.octavo-toolbar-label {
+  font-size: 12px;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.octavo-toolbar-sep {
+  width: 1px;
+  height: 18px;
+  margin: 0 3px;
+  background: var(--octavo-rule, var(--background-modifier-border));
+}
