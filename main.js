@@ -642,6 +642,7 @@ class OctavoToolbarSettingTab extends PluginSettingTab {
   display() {
     const { containerEl } = this;
     containerEl.empty();
+    containerEl.addClass("octavo-toolbar-settings");
     containerEl.createEl("h2", { text: "Octavo Toolbar" });
     containerEl.createEl("p", {
       cls: "setting-item-description",

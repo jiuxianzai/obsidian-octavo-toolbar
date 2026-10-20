@@ -80,3 +80,17 @@
   margin: 0 3px;
   background: var(--octavo-rule, var(--background-modifier-border));
 }
+
+
+/* ==========================================================================
+   设置页对齐
+   --------------------------------------------------------------------------
+   Obsidian 默认给设置页的 h2 / h3 加了 padding-inline，而说明文字没有，
+   于是标题看起来比正文缩进一截。这里只作用在本插件的设置容器上。
+   ========================================================================== */
+
+.octavo-toolbar-settings h2,
+.octavo-toolbar-settings h3 {
+  margin-inline: 0 !important;
+  padding-inline: 0 !important;
+}

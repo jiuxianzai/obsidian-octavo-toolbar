@@ -1,7 +1,7 @@
 {
   "id": "octavo-toolbar",
   "name": "Octavo Toolbar",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "minAppVersion": "1.5.0",
   "description": "选中文工具条：加粗 / 链接 / 标注 / 格式转换，以及可配置过滤项的纯文本复制；配套 Octavo 主题。",
   "author": "youyanping",
