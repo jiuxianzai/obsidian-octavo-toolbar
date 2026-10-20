@@ -2,7 +2,7 @@
 
 **选中文字工具条**：在 Obsidian 编辑器里选中文字、稍停片刻，选区上方浮出一排格式按钮；另有一个可配置过滤项的 **复制为纯文本**。
 
-[Octavo 主题](https://github.com/jiuxianzai/obsidian-theme-octavo) 的配套插件。Obsidian 桌面端没有「选中就浮出格式条」这回事（移动端的原生工具条由 App 提供），要监听选区、算坐标、动态插 DOM，纯 CSS 做不到，所以做成这个轻量插件：纯 DOM、无构建，`main.js` 就是最终产物。
+[Octavo 主题](https://github.com/jiuxianzai/obsidian-theme-octavo) 的配套插件。Obsidian 桌面端没有「选中就浮出格式条」这回事（移动端的原生工具条由 App 提供），要监听选区、算坐标、动态插 DOM，纯 CSS 做不到，所以做成这个轻量插件：纯 DOM、无构建，`main.js` / `styles.css` 就是最终产物。
 
 ## 用法
 
