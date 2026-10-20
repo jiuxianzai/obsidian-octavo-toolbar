@@ -75,6 +75,12 @@
 
 ## 安装
 
+### 从社区插件市场（上架后）
+
+`设置 → 第三方插件 → 浏览`，搜索 **Octavo Toolbar**，安装并启用。
+
+### 手动安装
+
 ```
 <vault>/.obsidian/plugins/octavo-toolbar/
 ├── main.js
