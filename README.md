@@ -1,85 +1,80 @@
 # Octavo Toolbar
 
-**选中文字工具条**：在 Obsidian 编辑器里选中文字、稍停片刻，选区上方浮出一排格式按钮；另有一个可配置过滤项的 **复制为纯文本**。
+English | [简体中文](README.zh-CN.md)
 
-[Octavo 主题](https://github.com/jiuxianzai/obsidian-theme-octavo) 的配套插件。Obsidian 桌面端没有「选中就浮出格式条」这回事（移动端的原生工具条由 App 提供），要监听选区、算坐标、动态插 DOM，纯 CSS 做不到，所以做成这个轻量插件：纯 DOM、无构建，`main.js` / `styles.css` 就是最终产物。
+A selection toolbar for Obsidian: select text, pause, and a formatting toolbar appears above the selection. It also includes a configurable **Copy as plain text** action that strips Markdown syntax before writing to the clipboard.
 
-## 用法
+A companion plugin for [Octavo](https://github.com/jiuxianzai/obsidian-theme-octavo), but it works with any theme.
 
-选中一段文字、松手稍停（默认 200 ms），选区上方浮出工具条；点一下就作用，`Esc` 或点别处收起。
+![Octavo Toolbar](screenshots/toolbar.png)
 
-| 组 | 按钮 | 默认 | 走什么 |
+## Features
+
+| Group | Buttons | Default | Behavior |
 | --- | --- | --- | --- |
-| 行内格式 | 加粗、斜体、删除线、行内代码、高亮、链接、清除格式 | 开 | Obsidian 核心命令（`editor:toggle-bold` / `editor:insert-link` / `editor:clear-formatting` …） |
-| 行内格式 | 朱笔下划线（`<u>…</u>`） | 关 | 自带简版；如果装了兼容的标记插件，优先复用它的命令 |
-| 格式转换（段落） | 标题 1–3、无序 / 有序列表、引用、代码块、待办 | 关 | 核心命令（`editor:set-heading-1` / `editor:toggle-bullet-list` / `editor:toggle-blockquote` / `editor:insert-codeblock` / `editor:cycle-list-checklist`） |
-| 标注 | 标注：**一个按钮，点开选类型**（note / tip / important / warning / caution / example / quote） | 关 | 核心只能插固定类型的空标注、且不认选区，所以按类型自己改写 `> [!type]`；同类型再点一次拆掉，换类型直接改 |
-| 复制 | **复制纯文本** | 开 | 按设置里的过滤项把选区转成纯文本，写入系统剪贴板 |
+| Inline | Bold, italic, strikethrough, inline code, highlight, link, clear formatting | On | Obsidian core commands such as `editor:toggle-bold` and `editor:insert-link` |
+| Inline | Underline (`<u>…</u>`) | Off | Built-in fallback; reuses a compatible marker plugin's command if installed |
+| Blocks | H1–H3, bullet list, numbered list, blockquote, code block, task | Off | Core commands such as `editor:set-heading-1` and `editor:toggle-blockquote` |
+| Callouts | One **Callout** button that opens a type menu (note, tip, important, warning, caution, example, quote) | Off | Adds, removes, or changes `> [!type]` around the selected block |
+| Copy | **Copy as plain text** | On | Filters Markdown syntax according to the settings below |
 
-> 按钮**尽量走核心命令**（标注、朱笔下划线、复制纯文本除外）：切换语义、链接弹窗、多行行为都跟编辑器自带的一致。
+Button labels are shown by default. You can turn them off in settings for a more compact toolbar.
 
-## 纯文本复制
+## Copy as plain text
 
-选中文字后点工具条上的 **复制纯文本**，也可以：
+Select text and click **Copy as plain text** in the toolbar. You can also use:
 
-- 命令面板：`Octavo Toolbar: 复制为纯文本`
-- 编辑器右键菜单：**复制为纯文本**
-- 没有选区时，复制光标所在行
+- Command palette: `Octavo Toolbar: Copy as plain text`
+- Editor context menu: **Copy as plain text**
+- With no selection, the current line is copied
 
-默认会过滤下面这些 Markdown 语法；在 `设置 → Octavo Toolbar → 纯文本复制` 里可以逐项关闭：
+All filters are enabled by default. You can turn each one off in `Settings → Octavo Toolbar → Copy as plain text`:
 
-| 过滤项 | 去掉什么 |
+| Filter | Removes |
 | --- | --- |
-| Frontmatter | 笔记顶部 `---` 包起来的 YAML 属性 |
-| 引用块 | 行首的 `>`（含嵌套 `> >`） |
-| 标注块头 | `> [!note]` 这类标注头，保留标题与正文 |
-| 标题标记 | 行首的 `#` / `##` … |
-| 强调标记 | `**粗体**`、`*斜体*`、`~~删除线~~`、`==高亮==` 的符号 |
-| 代码标记 | `` `行内代码` `` 的反引号和 ``` 围栏，保留代码内容 |
-| 列表标记 | `-`、`1.`、`- [ ]` 等列表符号，保留缩进和文字 |
-| 链接 / 图片 | `[文字](url)` → 文字；双链（含别名写法）也能还原成文字 |
-| 表格 | 表格竖线和表头分隔行，单元格之间用空格分开 |
-| HTML 标签 | `<u>`、`<br>`、`<span>` 等标签，保留文字 |
-| 公式定界符 | `$…$` / `$$…$$` 的美元符号，保留公式内容 |
-| 脚注 | `[^1]` 标记和脚注定义，保留脚注文字 |
-| 分隔线 | `---` / `***` / `___` 单独成行的分隔线 |
-| Obsidian 注释 | `%%…%%` 注释 |
+| Frontmatter | YAML frontmatter at the top of the note |
+| Blockquotes | Leading `>` markers, including nested `> >` |
+| Callout headers | `> [!note]`-style headers, keeping the title and body |
+| Headings | Leading `#` / `##` … markers |
+| Emphasis | `**bold**`, `*italic*`, `~~strikethrough~~`, `==highlight==` markers |
+| Code | Backticks and fenced code block markers, keeping the code content |
+| Lists | `-`, `1.`, `- [ ]` markers, keeping indentation and text |
+| Links / images | `[text](url)` → text; wiki links and aliases → text |
+| Tables | Table pipes and the separator row; cells are joined with spaces |
+| HTML | `<u>`, `<br>`, `<span>` tags, keeping the text |
+| Math | `$…$` / `$$…$$` delimiters, keeping the formula |
+| Footnotes | `[^1]` markers and footnote definitions, keeping the note text |
+| Horizontal rules | Lines made of `---`, `***`, or `___` |
+| Obsidian comments | `%%…%%` comments |
 
-**例子：只想去掉引用块** —— 把除「引用块」以外的开关全部关掉。这样 `>` 会被去掉，而 `**加粗**`、`# 标题`、列表符号等原样保留。
+**Example: remove blockquotes only.** Turn off every filter except **Blockquotes**. The leading `>` is removed while `**bold**`, `# headings`, list markers, and other syntax stay as written.
 
-代码围栏里的内容不会参与行内过滤，避免把代码里的 `*`、`_`、`` ` `` 吃掉。
+Content inside fenced code blocks and inline code is protected from the inline filters, so code such as `a * b` or `<tag>` is not altered.
 
-## 设置
+## Usage
 
-`设置 → Octavo Toolbar`：
+Select text and pause for about 200 ms (configurable). The toolbar appears above the selection. Press `Esc` or click elsewhere to dismiss it.
 
-- **弹出延迟**：选区稳定多久后浮出（0–800 ms）。
-- **按钮下显示名称**：除了图标再显示文字，**默认开启**。
-- **逐按钮开关**：行内格式、格式转换、标注、复制四组，按需打开。
-- **纯文本复制**：14 个过滤项，默认全开。
+The toolbar only appears in Live Preview and Source mode. On mobile, Obsidian already provides a native formatting toolbar, so this plugin is desktop-only.
 
-## 已知边界
+## Settings
 
-- **只在实时预览 / 源码模式出现**：选区必须落在当前文档的主编辑器上。阅读视图不弹；表格单元格里那层里层编辑器也不弹（否则会把格式施加到外层文档）。
-- **桌面端专用**（`isDesktopOnly`）：移动端 Obsidian 自带格式工具条，这里不重复造。
-- **纯文本复制是过滤器，不是 Markdown 渲染器**：嵌套特别深的语法（比如强调里再套链接）可能留下个别符号；需要绝对干净时，复制后手动检查一眼。
+`Settings → Octavo Toolbar`:
 
-## 和主题的分工
+- **Popup delay**: how long the selection must be stable before the toolbar appears (0–800 ms).
+- **Show button labels**: show text next to icons. Enabled by default.
+- **Per-button toggles**: inline, block, callout, and copy groups.
+- **Copy as plain text**: 14 filters, all enabled by default.
 
-| 谁 | 管什么 |
-| --- | --- |
-| 本插件 | 工具条本体、选区监听、定位、按钮落笔、纯文本过滤 |
-| [Octavo 主题](https://github.com/jiuxianzai/obsidian-theme-octavo) | 配色与排版；插件自带 `styles.css`，装了主题会自动吃 `--octavo-*` 变量 |
+![Octavo Toolbar settings](screenshots/settings.png)
 
-不装主题也能用：插件自带外观，回退到 Obsidian 的 `--background-primary` / `--text-muted` 等变量。
+## Installation
 
-## 安装
+### From the Community plugins directory (after approval)
 
-### 从社区插件市场（上架后）
+`Settings → Community plugins → Browse`, search for **Octavo Toolbar**, install, and enable it.
 
-`设置 → 第三方插件 → 浏览`，搜索 **Octavo Toolbar**，安装并启用。
-
-### 手动安装
+### Manual installation
 
 ```
 <vault>/.obsidian/plugins/octavo-toolbar/
@@ -88,8 +83,19 @@
 └── styles.css
 ```
 
-把整个 `octavo-toolbar` 文件夹放进上面的目录，重启 Obsidian（或在「设置 → 第三方插件」里重载）后启用。
+Place the whole `octavo-toolbar` folder in the path above, restart Obsidian (or reload it from `Settings → Community plugins`), then enable the plugin.
 
-## 许可
+## Compatibility and privacy
 
-MIT，见 [LICENSE](LICENSE)。
+- Obsidian **1.5.0+**, desktop only (`isDesktopOnly: true`).
+- No network requests, telemetry, ads, or self-updates.
+- Reads the current editor selection and writes to the system clipboard. It does not access files outside the active editor.
+- Works with any theme. The plugin ships its own `styles.css` and uses Octavo theme variables when available.
+
+## Development
+
+There is no build step. `main.js` and `styles.css` are the source and the final artifacts. `manifest.json` contains the plugin metadata, and `versions.json` maps releases to the minimum Obsidian version.
+
+## License
+
+[MIT](LICENSE).
