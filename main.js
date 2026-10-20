@@ -110,7 +110,7 @@ const U_OPEN = "<u>";
 const U_CLOSE = "</u>";
 
 /* 「朱笔下划线」是核心唯一没有的按钮：包 / 去 <u>…</u>。
- * 装了 octavo-mark 就直接调它的命令（行为一致、实现只有一处）；没装则退化为
+ * 装了兼容的标记插件（octavo-mark / folio-mark）就直接调它的命令；没装则退化为
  * 这里的简版。返回 true 表示「命令已接管」。 */
 function toggleUnderline(app, editor) {
   for (const id of ["octavo-mark:toggle-underline", "folio-mark:toggle-underline"]) {
