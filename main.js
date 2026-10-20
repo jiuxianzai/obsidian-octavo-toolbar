@@ -101,7 +101,7 @@ const DEFAULT_FILTERS = Object.fromEntries(FILTERS.map((f) => [f.id, true]));
 
 const DEFAULT_SETTINGS = {
   delay: 200, // 选区稳定多久后浮出（毫秒）
-  showLabels: false, // 按钮下是否显示名称
+  showLabels: true, // 按钮下是否显示名称（默认开启）
   buttons: DEFAULT_BUTTONS,
   plainTextFilters: Object.assign({}, DEFAULT_FILTERS),
 };
