@@ -11,7 +11,7 @@
 | 组 | 按钮 | 默认 | 走什么 |
 | --- | --- | --- | --- |
 | 行内格式 | 加粗、斜体、删除线、行内代码、高亮、链接、清除格式 | 开 | Obsidian 核心命令（`editor:toggle-bold` / `editor:insert-link` / `editor:clear-formatting` …） |
-| 行内格式 | 朱笔下划线（`<u>…</u>`） | 关 | 自带简版；如果装了旧版 `folio-mark`，优先复用它的命令 |
+| 行内格式 | 朱笔下划线（`<u>…</u>`） | 关 | 自带简版；如果装了兼容的标记插件，优先复用它的命令 |
 | 格式转换（段落） | 标题 1–3、无序 / 有序列表、引用、代码块、待办 | 关 | 核心命令（`editor:set-heading-1` / `editor:toggle-bullet-list` / `editor:toggle-blockquote` / `editor:insert-codeblock` / `editor:cycle-list-checklist`） |
 | 标注 | 标注：**一个按钮，点开选类型**（note / tip / important / warning / caution / example / quote） | 关 | 核心只能插固定类型的空标注、且不认选区，所以按类型自己改写 `> [!type]`；同类型再点一次拆掉，换类型直接改 |
 | 复制 | **复制纯文本** | 开 | 按设置里的过滤项把选区转成纯文本，写入系统剪贴板 |
